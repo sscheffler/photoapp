@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory
+        android:summary="app preferences"
+        android:title="Preferences" >
+        <EditTextPreference
+            android:key="@string/couchdb.url.key"
+            android:defaultValue="@string/couchdb.url"
+            android:title="couchdb-url" />
+        <EditTextPreference
+            android:key="@string/couchdb.database.key"
+            android:defaultValue="@string/couchdb.database"
+            android:title="couchdb-database" />
+        <EditTextPreference
+            android:key="@string/camera.delay"
+            android:defaultValue="@string/camera.delay.default"
+            android:title="camera-delay" />
+    </PreferenceCategory>
+    <Preference android:title="@string/connection.test"
+                android:key="@string/button.connection.test"/>
+    <Preference android:title="@string/start"
+                android:key="@string/button.start"/>
+</PreferenceScreen>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AccelratorApp</string>
+    <string name="display">display</string>
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="couchdb.url">http://192.168.178.28:5984</string>
+    <string name="couchdb.database">android</string>
+    <string name="start">start</string>
+    <string name="connection.test">Test Connection</string>
+    <string name="button.start">button.start</string>
+    <string name="button.connection.test">button.connection.start</string>
+    <string name="couchdb.url.key">couchdb.url</string>
+    <string name="couchdb.database.key">couchdb.database</string>
+    <string name="camera.delay">camera.delay</string>
+    <string name="camera.delay.default">5000</string>
+    <string name="sensorEvent.recognized">sensorEvent recognized</string>
+    <string name="sensorEvent.triggered">sensorEvent was triggered</string>
+    <string name="status">status</string>
+    <string name="title_activity_event_down">EventDownActivity</string>
+</resources>
