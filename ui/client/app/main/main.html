@@ -1,0 +1,42 @@
+<!--<div ng-include="'components/navbar/navbar.html'"></div>-->
+<div ng-controller='MainCtrl'>
+<div class="navbar navbar-inverse navbar-static-top" >
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand"><img src="components/img/flag.gif" height="30" width="41" ng-click="refresh()"></a>
+    </div>
+  </div>
+</div>
+
+<div class="container" >
+    <div class="row">
+    <!--<button class="btn btn-warning col-sm-1" ng-click="refresh()">Refresh</button>-->
+    </div>
+   <div class="row row-content">
+        <div class="col-xs-6 col-sm-5">
+          <table class="table table-striped table-hover table-bordered">
+            <tr>
+              <td>Gerätenummer</td>
+              <td>Uhrzeit</td>
+            </tr>  
+            <tr ng-repeat="entry in data">
+                <td>{{entry.doc._id}}</td>
+                <!--<td>{{entry.doc.device_id}}</td>-->
+                <td><span class="label label-success" ng-mouseover="setImage(entry.id)">{{entry.doc.time| date:'yyyy-MM-dd HH:mm:ss'}}</span>
+            </tr>
+          </table>
+        </div>
+        <div class="col-xs-4 col-sm-5">
+          <div class=row>
+            <p style="padding:20px;"></p><img src="{{image}}" class="img-responsive">
+          </div>
+        </div>
+    </div>
+</div>
+</div>

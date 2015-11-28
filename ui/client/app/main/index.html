@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show Database contents</title><!-- stylesheets -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!--<link href="client/css/bootstrap-social.css" rel="stylesheet">
+    <link href="client/css/mystyles.css" rel="stylesheet">-->
+</head>
+<body ng-controller="AppController">
+<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar" class="navbar-toggle collapsed"><span
+                    class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                    class="icon-bar"></span></button>
+            <a href="index.html" class="navbar-brand"><img src="img/flag.gif" height="30" width="41"></a></div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#" ng-click="refresh()"><span aria-hidden="true" class="glyphicon glyphicon-repeat"></span></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a id="database_credentials_button" href="#"><span aria-hidden="true"
+                                                                       class="glyphicon glyphicon-cog"> {{couchdb.url}}/{{couchdb.database}}</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="database_credentials_modal" role="dialog" class="modal fade">
+    <div class="modal-dialog modal-modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close">&times;</button>
+                <h4 class="modal-title">Database Credentials</h4></div>
+            <div class="modal-body">
+                <form role="search" class="form-inline">
+                    <div class="form-group"><input type="text" placeholder="http://localhost:5984" ng-model="url"
+                                                   class="form-control"><input type="text" placeholder="android"
+                                                                               ng-model="database" class="form-control">
+                        <button type="submit" id="save_button" ng-click="saveCredentials(url, database)"
+                                class="btn btn-info form-control"><span aria-hidden="true"
+                                                                        class="glyphicon glyphicon-ok"></span></button>
+                        <button type="button" data-dismiss="modal" ng-click="resetCredentials()"
+                                class="btn btn-default form-control"><span aria-hidden="true"
+                                                                           class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row row-content">
+        <div class="col-xs-12 col-sm-5">
+            <div id="accordion" role="tablist" aria-multiselectable="true" ng-repeat="entry in data"
+                 class="panel-group">
+                <div class="panel panel-default">
+                    <div role="tab" id="headingPeter" class="panel-heading"><h4 class="panel-title"><a role="button"
+                                                                                                       data-toggle="collapse"
+                                                                                                       data-parent="#accordion"
+                                                                                                       href="#{{entry.doc._id}}"
+                                                                                                       aria-expanded="true"
+                                                                                                       aria-controls="peter"
+                                                                                                       ng-mouseover="setImage(entry.id)">{{entry.doc.time
+                        | date:'yyyy-MM-dd HH:mm:ss'}}</a></h4></div>
+                    <div role="tabpanel" id="{{entry.doc._id}}" aria-labelledby="headingPeter"
+                         class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table table-striped table-hover table-bordered">
+                                <tr>
+                                    <th>KEY</th>
+                                    <th>VALUE</th>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>{{entry.doc._id}}</td>
+                                </tr>
+                                <tr>
+                                    <td>DEVICE_ID</td>
+                                    <td>{{entry.doc.device_id}}</td>
+                                </tr>
+                                <tr>
+                                    <td>PICTURE</td>
+                                    <td><a type="button" ng-click="setImage(entry.id)" class="btn btn-info">Show</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-5"><p style="padding:20px;"></p><img src="{{image}}" class="img-responsive"></div>
+    </div>
+</div>
+<!-- javascript -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="app.js"></script>
+<script>$(document)
+        .ready(function () {
+            $("#database_credentials_button").click(function () {
+                $("#database_credentials_modal").modal('toggle');
+            });
+            $("#save_button").click(function () {
+                $("#database_credentials_modal").modal('toggle');
+            });
+        });</script>
+</body>
+</html>
